@@ -20,11 +20,6 @@ function getHumanChoice() {
 }
 
 
-
-// const humanSelection = getHumanChoice();
-// const computerSelection = getComputerChoice();
-
-
 function playGame() {
     // declaring human and computer scores vars
     let humanScore = 0;
@@ -76,7 +71,19 @@ function playGame() {
     console.log("Final Scores:");
     console.log("Human score: ", humanScore);
     console.log("Computer score: ", computerScore);
+
+    if (computerScore > humanScore) {
+        console.log("YOU LOST THE GAME")
+    }
+    else if (computerScore < humanScore) {
+        console.log("Congratulations! YOU WON THE GAME!")
+
+    }
+    else {
+        console.log("YOUR SCORE IS EVEN")
+    }
 }
 
 
 playGame();
+
