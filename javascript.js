@@ -1,8 +1,7 @@
-// בוחרת מס׳ רנדומלי בין 0-2
-// הפונקציה מת׳ רנדום בוחרת מס׳ בין 0-1 עשרוני ואז מכפיל ב-3
-// ואז נעגל למס׳ השלם כלפי מטה... בעזרת פלור
+// select all of the buttons
+const buttons = document.querySelectorAll('button');
 
-// הפונקציה שמשיגה את הבחירה של המחשב
+
 
 
 function getComputerChoice() {
@@ -15,7 +14,6 @@ function getComputerChoice() {
 // הפונקציה שמשיגה את הבחירה של המשתמש
 function getHumanChoice() {
     let choice = prompt("What's your choice?").toLowerCase()
-    // print to check what's out
     return choice;
 }
 
@@ -87,3 +85,12 @@ function playGame() {
 
 playGame();
 
+// add event listeners for EACH button
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', playRound() {
+        let humanChoice = button.id;
+        let computerChoice = getComputerChoice;
+        playRound(humanChoice, computerChoice);
+    });
+});
