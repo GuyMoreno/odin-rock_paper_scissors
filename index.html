@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- linking a js file to index.html -->
-    <script src="javascript.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Let's Play Rock Scissors Paper!</h1>
+
     <!-- Buttons for user selection -->
-    <button id="rock">Rock</button>
-    <button id="scissors">Scissors</button>
-    <button id="paper">Paper</button>
+    <div class="buttons">
+        <button class="button" id="rock">Rock</button>
+        <button class="button" id="scissors">Scissors</button>
+        <button class="button" id="paper">Paper</button>
+    </div>
     
     <!-- Score Display -->
-    <div class="score">
-        <p>Player Score: <span id="player-score">0</span></p>
-        <p>Computer Score: <span id="computer-score">0</span></p>
+    <div class="scores">
+        <p>Player Score: <span id="humanScore">0</span></p>
+        <p>Computer Score: <span id="computerScore">0</span></p>
     </div>
 
     <!-- Result winner Display -->
-     <div id="winner"></div>
-
+     <div id="theWinner"></div>
+    
+    <!-- linking js file -->
+    <script src="javascript.js"></script>
     
 </body>
 </html>

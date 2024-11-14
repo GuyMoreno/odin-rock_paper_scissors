@@ -1,0 +1,13 @@
+* {
+    text-align: center;
+
+}
+
+.scores {
+    margin-top: 100px;
+    gap: 10px;
+}
+
+.buttons {
+    margin-top: 60px;
+}
