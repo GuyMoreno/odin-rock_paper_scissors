@@ -1,95 +1,112 @@
-// select all of the buttons
-// save them in a VAR that we can later use it
-const buttons = document.querySelectorAll('button');
+// vars
+const choices = ["rock", "paper", "scissors"];
+const buttons = document.querySelectorAll("button");
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+const container = document.getElementById("container");
 
+let playerScore = 0; // Initialize player's score
+let computerScore = 0; // Initialize computer's score
+let winningScore = 5; // Initialize winning's score
 
-// add event listeners for EACH button
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        // the game continue run ONLY if score not above 5
-        if (humanScore < winningScore && computerScore < winningScore) {
-            // saving human selction as button id
-            const humanChoice = button.id;
-            const computerChoice = getComputerChoice();
-            // finally we're playing
-            playRound(humanChoice, computerChoice);
-        }
-    });
+// emojiis object for display on page later
+const emojiis = {
+  rock: "🪨",
+  paper: "✋🏼",
+  scissors: "✌🏼",
+};
+
+// HELPING FUNCS
+function getComputerChoice() {
+  // just pick a random number between 0-2 and store it inside randomNumber.
+  let randomNumber = Math.floor(Math.random() * 3);
+  //accecsing to the choises array in the random num index...
+  // other words, pick a random move.
+  return choices[randomNumber];
+}
+
+// Color Result Function
+function colorResult(result) {
+  // Clear Preveious color
+  resultDisplay.classList.remove("greenText", "redText");
+  // Start switching
+  switch (result) {
+    case "YOU WIN!":
+      resultDisplay.classList.add("greenText");
+      break;
+    case "YOU LOSE!":
+      resultDisplay.classList.add("redText");
+      break;
+  }
+}
+
+//.forEach method iterates each button
+buttons.forEach((button) => {
+  //for each one we add 'click' listener
+  button.addEventListener("click", () => playGame(button.id));
 });
 
-// vars declerations
-let humanScore = 0;
-let computerScore = 0;
-let winningScore = 5;
+function determineWinner(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) return "ITS A TIE!";
 
-// helping functions"
-function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3);
-    return randomNumber === 0 ? "rock" : randomNumber === 1 ? "paper" : "scissors";
+  const winCondition =
+    (playerChoice === "rock" && computerChoice === "scissors") ||
+    (playerChoice === "paper" && computerChoice === "rock") ||
+    (playerChoice === "scissors" && computerChoice === "paper");
+
+  return winCondition ? "YOU WIN!" : "YOU LOSE!";
 }
 
-
-function playRound(humanChoice, computerChoice) {
-    console.log("Player choice:", humanChoice);
-    console.log("Computer choice:", computerChoice);
-
-    let roundResult = ''; // Store the result message
-
-    if (humanChoice === computerChoice) {
-        console.log("It's a tie!")
-        roundResult = "It's a tie!";
-    } else if (humanChoice === "rock") {
-        if (computerChoice === "scissors") {
-            console.log("You won! Rock beats Scissors.")
-            roundResult = "You won! Rock beats Scissors.";
-            humanScore += 1;
-        } else {
-            console.log("You lose! Paper beats Rock")
-            roundResult = "You lose! Paper beats Rock.";
-            computerScore += 1;
-        }
-
-    } else if (humanChoice === "paper") {
-        if (computerChoice === "rock") {
-            console.log("You won! Paper beats Rock.")
-            roundResult = "You won! Paper beats Rock.";
-            humanScore += 1;
-        } else {
-            console.log("You lose! Scissors beats Paper")
-            roundResult = "You lose! Scissors beats Paper.";
-            computerScore += 1;
-        }
-    } else if (humanChoice === "scissors") {
-        if (computerChoice === "paper") {
-            console.log("You won! Scissors beats Paper.")
-            roundResult = "You won! Scissors beats Paper.";
-            humanScore += 1;
-        } else {
-            console.log("You lose! Rock beats Scissors")
-            roundResult = "You lose! Rock beats Scissors.";
-            computerScore += 1;
-        }
-
-    }
-    // Update the result of the round on the screen
-    document.getElementById("theWinner").textContent = roundResult;
-    // Update the score display dynamically
-    document.getElementById("humanScore").textContent = humanScore;
-    document.getElementById("computerScore").textContent = computerScore;
-
-    // after every round we check if someone reached 5 pts.
-    if (humanScore >= winningScore) {
-        document.getElementById("theWinner").textContent = "You won!";
-        disableButtons();
-    } else if (computerScore >= winningScore) {
-        document.getElementById("theWinner").textContent = "You lost the game :/";
-        disableButtons();
-    }
+function calculateScore(result) {
+  if (result === "YOU WIN!") {
+    playerScore++;
+    playerScoreDisplay.textContent = playerScore;
+  } else if (result === "YOU LOSE!") {
+    computerScore++;
+    computerScoreDisplay.textContent = computerScore;
+  }
+  checkGameOver();
 }
-
 
 function disableButtons() {
-    buttons.forEach(button => {
-        button.disabled = true;
-    });
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+
+function updateGameResultDisplay() {
+  container.style.fontWeight = "bold";
+  container.style.fontSize = "40px";
+  container.style.color = playerScore === winningScore ? "green" : "red";
+}
+
+function checkGameOver() {
+  if (playerScore === winningScore || computerScore === winningScore) {
+    disableButtons();
+    container.textContent =
+      playerScore === winningScore
+        ? "Player wins the game!"
+        : "Computer wins the game!";
+    updateGameResultDisplay();
+  }
+}
+
+function playGame(playerChoice) {
+  // defining var of computer choice
+  // Helped with get computerChoice funct
+  const computerChoice = getComputerChoice();
+  let result = determineWinner(playerChoice, computerChoice);
+
+  let playerEmoji = emojiis[playerChoice];
+  let computerEmoji = emojiis[computerChoice];
+
+  playerDisplay.textContent = `Player: ${playerEmoji}`;
+  computerDisplay.textContent = `Computer: ${computerEmoji} `;
+  resultDisplay.textContent = result;
+  //Call ColorResult
+  colorResult(result);
+  calculateScore(result);
 }

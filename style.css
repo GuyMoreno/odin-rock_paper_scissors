@@ -1,73 +1,114 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    text-align: center;
+* {
     margin: 0;
     padding: 0;
-}
-
-h1 {
-    font-size: 50px;
-    font-family: 'Press Start 2P',
-        cursive;
-    color: #444;
-    margin-top: 20px;
-}
-
-/* סגנון הכללי של הכפתורים */
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #5f5f5f;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    margin: 15px;
-}
-
-/* סגנון כשעובר על הכפתור עם העכבר */
-button:hover {
-    background-color: #5902bb;
-    /* צבע כהה יותר כשהעכבר מעל */
-    transform: translateY(-3px);
-    /* הזזה קלה כלפי מעלה להרגשה של לחיצה */
-}
-
-/* סגנון כשיש לחיצה על הכפתור */
-button:active {
-    background-color: #3c0059;
-    /* צבע כהה עוד יותר בזמן הלחיצה */
-    transform: translateY(1.5px);
-    /* תזוזה קלה כלפי מטה להרגשה של לחיצה */
-}
-
-/* סגנון תיבת התוצאה */
-#theWinner {
-    font-size: 24px;
-    color: #444;
-    margin-top: 50px;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Arial", sans-serif;
     font-weight: bold;
-}
-
-/* סגנון הציונים */
-.scores p {
-    font-size: 18px;
+    background-color: #f9f9f9;
+    height: 100vh;
     color: #333;
-}
-
-.buttons {
-    margin-top: 30px;
-}
-
-button {
+  }
+  
+  .container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #h1 {
+    color: #2b4c4c;
+    align-items: center;
+    text-align: center;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin-bottom: 40px;
+  }
+  
+  h1::before,
+  h1::after {
+    content: "🔥 ";
+  }
+  
+  ::selection {
+    background: #9b6613;
+    color: black;
+  }
+  
+  .choices {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .choices > button {
+    font-size: 5rem;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #4b88a2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .choices > button:hover {
+    background-color: #3b6d74;
+    transform: scale(1.1);
+  }
+  
+  .text-container {
+    margin-bottom: 30px;
+  }
+  
+  .text-container > div {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    padding: 15px;
+    border: 2px solid #4b88a2;
+    border-radius: 8px;
+    background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-button:disabled {
-    cursor: not-allowed;
-    background-color: #b0c4de;
-    transform: none;
-}
+  }
+  
+  #resultDisplay {
+    font-size: 3rem;
+    margin-top: 30px;
+  }
+  
+  .scoreDisplays {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .scoreDisplay {
+    font-size: 2rem;
+    padding: 15px;
+    border: 2px solid #4b88a2;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .greenText {
+    color: #9ac100;
+  }
+  
+  .redText {
+    color: #d32f2f;
+  }
+  
+  #playerScoreDisplay {
+    color: #9ac100;
+  }
+  
+  #computerScoreDisplay {
+    color: #d32f2f;
+  }
+  
