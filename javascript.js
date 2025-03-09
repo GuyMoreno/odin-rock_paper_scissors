@@ -104,7 +104,7 @@ function playGame(playerChoice) {
   let computerEmoji = emojiis[computerChoice];
 
   playerDisplay.textContent = `Player: ${playerEmoji}`;
-  computerDisplay.textContent = `Computer: ${computerEmoji} `;
+  computerDisplasy.textContent = `Computer: ${computerEmoji} `;
   resultDisplay.textContent = result;
   //Call ColorResult
   colorResult(result);
